@@ -1,0 +1,313 @@
+[
+  {
+    "parts": [
+      {
+        "type": "text",
+        "text": "tell me how many sales made on 4th nov, 2025"
+      }
+    ],
+    "id": "nsR4wRsuYbn1PQXK",
+    "role": "user"
+  },
+  {
+    "id": "HrFOG0B7v2bcGQGX",
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "reasoning",
+        "text": "",
+        "providerMetadata": {
+          "openai": {
+            "itemId": "rs_028168a578644e0800690cad9eebbc81a28761dd770f15d22e",
+            "reasoningEncryptedContent": null
+          }
+        },
+        "state": "done"
+      },
+      {
+        "type": "tool-schema",
+        "toolCallId": "call_iCd2ZCLnqXDqEP9Uf8AtjoWL",
+        "state": "output-available",
+        "input": {},
+        "output": "CREATE TABLE products (\n                  id integer PRIMARY KEY AUTOINCREMENT NOT NULL,\n\t                name text NOT NULL,\n\t                category text NOT NULL,\n\t                price real NOT NULL,\n\t                stock integer NOT NULL,\n\t                created_at text DEFAULT CURRENT_TIMESTAMP\n                  );\n                CREATE TABLE sales (\n\t                id integer PRIMARY KEY AUTOINCREMENT NOT NULL,\n\t                product_id integer NOT NULL,\n\t                quantity integer NOT NULL,\n\t                total_amount real NOT NULL,\n\t                sale_date text DEFAULT CURRENT_TIMESTAMP,\n\t                customer_name text NOT NULL,\n\t                region text NOT NULL,\n\t                FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE no action ON DELETE no action\n                  )",
+        "callProviderMetadata": {
+          "openai": {
+            "itemId": "fc_028168a578644e0800690cada266a481a2bb87debf30528e70"
+          }
+        }
+      },
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "reasoning",
+        "text": "",
+        "providerMetadata": {
+          "openai": {
+            "itemId": "rs_028168a578644e0800690cada37d7c81a28069888eac655937",
+            "reasoningEncryptedContent": null
+          }
+        },
+        "state": "done"
+      },
+      {
+        "type": "tool-db",
+        "toolCallId": "call_QSmGcVtZtMxvF1D5I0RkMUl6",
+        "state": "output-available",
+        "input": {
+          "query": "SELECT COUNT(*) AS sales_count FROM sales WHERE date(sale_date) = '2025-11-04';"
+        },
+        "output": {
+          "columns": [
+            "sales_count"
+          ],
+          "columnTypes": [
+            ""
+          ],
+          "rows": [
+            [
+              12
+            ]
+          ],
+          "rowsAffected": 0,
+          "lastInsertRowid": null
+        },
+        "callProviderMetadata": {
+          "openai": {
+            "itemId": "fc_028168a578644e0800690cada780a881a2820f2ddfeed34c80"
+          }
+        }
+      },
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "reasoning",
+        "text": "",
+        "providerMetadata": {
+          "openai": {
+            "itemId": "rs_028168a578644e0800690cada97f5481a2a6a94d3b7cdb8d24",
+            "reasoningEncryptedContent": null
+          }
+        },
+        "state": "done"
+      },
+      {
+        "type": "text",
+        "text": "I queried the sales table for records where the sale_date falls on 2025-11-04.\n\nResult:\n- Sales count: 12\n\nQuery used:\nSELECT COUNT(*) AS sales_count\nFROM sales\nWHERE date(sale_date) = '2025-11-04';\n\nWould you like a breakdown by product, region, or hour of the day for that date?",
+        "providerMetadata": {
+          "openai": {
+            "itemId": "msg_028168a578644e0800690cadaf45a081a2b248fbd01e55a687"
+          }
+        },
+        "state": "done"
+      }
+    ]
+  },
+  {
+    "parts": [
+      {
+        "type": "text",
+        "text": "list all products"
+      }
+    ],
+    "id": "2YAUrbnhjGqRKduM",
+    "role": "user"
+  },
+  {
+    "id": "6r6E6pVI6dPNFkaR",
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "reasoning",
+        "text": "",
+        "providerMetadata": {
+          "openai": {
+            "itemId": "rs_028168a578644e0800690cadcd8b2081a2b89997befa19c933",
+            "reasoningEncryptedContent": null
+          }
+        },
+        "state": "done"
+      },
+      {
+        "type": "tool-db",
+        "toolCallId": "call_GJxFgyZtiCpzEwLGVmQwuTCI",
+        "state": "output-available",
+        "input": {
+          "query": "SELECT id, name, category, price, stock, created_at FROM products ORDER BY id;"
+        },
+        "output": {
+          "columns": [
+            "id",
+            "name",
+            "category",
+            "price",
+            "stock",
+            "created_at"
+          ],
+          "columnTypes": [
+            "INTEGER",
+            "TEXT",
+            "TEXT",
+            "REAL",
+            "INTEGER",
+            "TEXT"
+          ],
+          "rows": [
+            [
+              1,
+              "Laptop",
+              "Electronics",
+              999.99,
+              50,
+              "2025-11-04 18:14:58"
+            ],
+            [
+              2,
+              "Mouse",
+              "Electronics",
+              25.99,
+              200,
+              "2025-11-04 18:14:58"
+            ],
+            [
+              3,
+              "Keyboard",
+              "Electronics",
+              75,
+              150,
+              "2025-11-04 18:14:58"
+            ],
+            [
+              4,
+              "Monitor",
+              "Electronics",
+              299.99,
+              75,
+              "2025-11-04 18:14:58"
+            ],
+            [
+              5,
+              "Desk Chair",
+              "Furniture",
+              199.99,
+              40,
+              "2025-11-04 18:14:58"
+            ],
+            [
+              6,
+              "Desk",
+              "Furniture",
+              399.99,
+              30,
+              "2025-11-04 18:14:58"
+            ],
+            [
+              7,
+              "Notebook",
+              "Stationery",
+              5.99,
+              500,
+              "2025-11-04 18:14:58"
+            ],
+            [
+              8,
+              "Pen Set",
+              "Stationery",
+              12.99,
+              300,
+              "2025-11-04 18:14:58"
+            ]
+          ],
+          "rowsAffected": 0,
+          "lastInsertRowid": null
+        },
+        "callProviderMetadata": {
+          "openai": {
+            "itemId": "fc_028168a578644e0800690cadd4f5d481a29cc81d951ad616d0"
+          }
+        }
+      },
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "reasoning",
+        "text": "",
+        "providerMetadata": {
+          "openai": {
+            "itemId": "rs_028168a578644e0800690cadd666a881a2b6416d112dd75e78",
+            "reasoningEncryptedContent": null
+          }
+        },
+        "state": "done"
+      },
+      {
+        "type": "text",
+        "text": "Here are all products:\n\n- ID 1: Laptop — Electronics — Price 999.99 — Stock 50 — Created at 2025-11-04 18:14:58\n- ID 2: Mouse — Electronics — Price 25.99 — Stock 200 — Created at 2025-11-04 18:14:58\n- ID 3: Keyboard — Electronics — Price 75 — Stock 150 — Created at 2025-11-04 18:14:58\n- ID 4: Monitor — Electronics — Price 299.99 — Stock 75 — Created at 2025-11-04 18:14:58\n- ID 5: Desk Chair — Furniture — Price 199.99 — Stock 40 — Created at 2025-11-04 18:14:58\n- ID 6: Desk — Furniture — Price 399.99 — Stock 30 — Created at 2025-11-04 18:14:58\n- ID 7: Notebook — Stationery — Price 5.99 — Stock 500 — Created at 2025-11-04 18:14:58\n- ID 8: Pen Set — Stationery — Price 12.99 — Stock 300 — Created at 2025-11-04 18:14:58\n\nWould you like this exported as CSV, or filtered by category, price range, or stock level?",
+        "providerMetadata": {
+          "openai": {
+            "itemId": "msg_028168a578644e0800690caddc532c81a285de630118557343"
+          }
+        },
+        "state": "done"
+      }
+    ]
+  },
+  {
+    "parts": [
+      {
+        "type": "text",
+        "text": "yes plz"
+      }
+    ],
+    "id": "QXNO7Cvho0aJS1rL",
+    "role": "user"
+  },
+  {
+    "id": "ZlU3OsurLwoD2zht",
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "step-start"
+      },
+      {
+        "type": "reasoning",
+        "text": "",
+        "providerMetadata": {
+          "openai": {
+            "itemId": "rs_028168a578644e0800690cade689e081a2b47cafed941101b9",
+            "reasoningEncryptedContent": null
+          }
+        },
+        "state": "done"
+      },
+      {
+        "type": "text",
+        "text": "Nice! Do you want to export all products to CSV, or apply some filters first? Here are ready-to-run SELECT queries you can use (they’ll work in SQLite; you can then export the results to CSV from your client):\n\n- Export all products (default sort by ID)\nSELECT id, name, category, price, stock, created_at FROM products ORDER BY id;\n\n- Filter by category (example categories)\nSELECT id, name, category, price, stock, created_at\nFROM products\nWHERE category IN ('Electronics','Furniture')\nORDER BY id;\n\n- Filter by price range (example: 0 to 100)\nSELECT id, name, category, price, stock, created_at\nFROM products\nWHERE price BETWEEN 0 AND 100\nORDER BY id;\n\n- Filter by stock level (example: stock >= 100)\nSELECT id, name, category, price, stock, created_at\nFROM products\nWHERE stock >= 100\nORDER BY id;\n\n- Combine filters (example: Electronics with price 0–100 and stock >= 50)\nSELECT id, name, category, price, stock, created_at\nFROM products\nWHERE category = 'Electronics'\n  AND price BETWEEN 0 AND 100\n  AND stock >= 50\nORDER BY id;\n\nTell me which filters you want (or provide your own), and I’ll tailor the exact SELECT for you. If you want CSV, just run the chosen SELECT in your SQLite client and export the results to CSV from there.",
+        "providerMetadata": {
+          "openai": {
+            "itemId": "msg_028168a578644e0800690cadf364dc81a2b2c45ee62a24be67"
+          }
+        },
+        "state": "done"
+      }
+    ]
+  },
+  {
+    "parts": [
+      {
+        "type": "text",
+        "text": "list all products in tabluar form"
+      }
+    ],
+    "id": "ix2llrdf8RVG8d6K",
+    "role": "user"
+  }
+]
