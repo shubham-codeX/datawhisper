@@ -6,7 +6,7 @@ import { useState } from 'react';
 export default function Chat() {
   const [input, setInput] = useState('');
   const { messages, sendMessage } = useChat();
-  
+
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
       {messages.map(message => (
@@ -29,7 +29,6 @@ export default function Chat() {
           e.preventDefault();
           sendMessage({ text: input });
           setInput('');
-          // console.log('Message sent:', sendMessage({ text: input }));
         }}
       >
         <input
